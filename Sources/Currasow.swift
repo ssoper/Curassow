@@ -30,7 +30,7 @@ extension Address : ArgumentConvertible {
 public struct Server {
     var port: UInt16 = 8080
 
-    init() {}
+    public init() {}
 
     public func serve(closure: RequestType -> ResponseType) throws {
         let address = Address.IP(hostname: "0.0.0.0", port: port)
