@@ -32,7 +32,7 @@ public struct Server {
 
     public init() {}
 
-    public func serve(closure: RequestType -> ResponseType) throws {
+    public func start(closure: RequestType -> ResponseType) throws {
         let address = Address.IP(hostname: "0.0.0.0", port: port)
         let arbiter = Arbiter<SyncronousWorker>(application: closure, workers: 1, addresses: [address])
         try arbiter.run()
