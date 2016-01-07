@@ -28,9 +28,11 @@ extension Address : ArgumentConvertible {
 }
 
 public struct Server {
-    public var port: UInt16 = 8080
+    var port: UInt16 = 8080
 
-    public init() {}
+    public init(port: UInt16) {
+        self.port = port
+    }
 
     public func start(closure: RequestType -> ResponseType) throws {
         let address = Address.IP(hostname: "0.0.0.0", port: port)
