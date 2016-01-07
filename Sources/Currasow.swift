@@ -30,8 +30,8 @@ extension Address : ArgumentConvertible {
 public struct Server {
     var port: UInt16 = 8080
 
-    public init(port: UInt16) {
-        self.port = port
+    public init(port: Int) {
+        self.port = UInt16(port)
     }
 
     public func start(closure: RequestType -> ResponseType) throws {
