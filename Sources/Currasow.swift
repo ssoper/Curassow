@@ -31,7 +31,8 @@ public struct Server {
     var port: Int = 8080
 
     public func serve(closure: RequestType -> ResponseType) {
-        let arbiter = Arbiter<SyncronousWorker>(application: closure, workers: 1, addresses: ["0.0.0.0:\(port)"])
+        let address = Address.IP(hostname: "0.0.0.0", port: port))
+        let arbiter = Arbiter<SyncronousWorker>(application: closure, workers: 1, addresses: [address])
         try arbiter.run()
     }
 }
