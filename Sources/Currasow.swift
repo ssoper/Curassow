@@ -8,7 +8,6 @@ import Nest
 import Commander
 import Inquiline
 
-
 extension Address : ArgumentConvertible {
   init(parser: ArgumentParser) throws {
     if let value = parser.shift() {
@@ -28,6 +27,14 @@ extension Address : ArgumentConvertible {
   }
 }
 
+public struct Server {
+    var port: Int = 8080
+
+    public func serve(closure: RequestType -> ResponseType) {
+        let arbiter = Arbiter<SyncronousWorker>(application: closure, workers: 1, addresses: ["0.0.0.0:\(port)"])
+        try arbiter.run()
+    }
+}
 
 @noreturn public func serve(closure: RequestType -> ResponseType) {
   command(
