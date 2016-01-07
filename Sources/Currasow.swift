@@ -28,7 +28,7 @@ extension Address : ArgumentConvertible {
 }
 
 public struct Server {
-    var port: UInt16 = 8080
+    public var port: UInt16 = 8080
 
     public init() {}
 
